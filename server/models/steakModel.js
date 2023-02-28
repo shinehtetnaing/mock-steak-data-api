@@ -12,7 +12,7 @@ const steakSchema = new Schema({
         required: true,
     },
     image: {
-        type: String,
+        type: URL,
         required: true,
     },
     price: {
