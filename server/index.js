@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const steakRoutes = require("./routes/steak");
+const dessertRoutes = require("./routes/dessert");
 
 const app = express();
 
@@ -11,7 +12,8 @@ app.use(cors());
 app.use(express.json());
 
 // routes
-app.use("/api/steak", steakRoutes);
+app.use("/api/steaks", steakRoutes);
+app.use("/api/desserts", dessertRoutes);
 
 // connect to db
 mongoose.connect(process.env.ATLAS_URI)
