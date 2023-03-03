@@ -8,8 +8,15 @@ const dessertRoutes = require("./routes/dessert");
 
 const app = express();
 
+app.use(express.static('public'));
+
 app.use(cors());
 app.use(express.json());
+
+//index.js
+app.get('/', (req, res) => {
+    res.sendFile('index.html', { root: path.join(__dirname, 'public') });
+})
 
 // routes
 app.use("/api/steaks", steakRoutes);
@@ -28,7 +35,7 @@ mongoose.connect(process.env.ATLAS_URI)
     });
 
 // middleware
-app.use(( req, res, next) => {
+app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
 });
