@@ -4,6 +4,7 @@ const express = require("express");
 const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const menuRoutes = require("./routes/menu");
 const steakRoutes = require("./routes/steak");
 const dessertRoutes = require("./routes/dessert");
 
@@ -14,12 +15,13 @@ app.use(express.static('public'));
 app.use(cors());
 app.use(express.json());
 
-//index.js
+// index.js
 app.get('/', (req, res) => {
     res.sendFile('index.html', { root: path.join(__dirname, 'public') });
 })
 
 // routes
+app.use("/api/menu", menuRoutes);
 app.use("/api/steaks", steakRoutes);
 app.use("/api/desserts", dessertRoutes);
 
